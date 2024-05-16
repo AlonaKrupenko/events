@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import EventsList from "./routes/EventsList";
+import ViewEvent from "./routes/ViewEvent/ViewEvent";
+import Register from "./routes/Register";
+import NoMatch from "./components/NoMatch";
 
 function App() {
+  //! Make No match found to work properly (such id do not exist)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<EventsList />} />
+        <Route path="/view/:id" element={<ViewEvent />} />
+        <Route path="/register/:id" element={<Register />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
+    </>
   );
 }
 
